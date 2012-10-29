@@ -18,7 +18,6 @@
  */
 
 namespace Aldu\Media\Models;
-
 use Aldu\Core;
 use Aldu\Core\Exception;
 use Aldu\Core\Utility\Shell;

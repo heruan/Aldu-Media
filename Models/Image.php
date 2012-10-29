@@ -18,7 +18,6 @@
  */
 
 namespace Aldu\Media\Models;
-
 use Aldu\Core;
 use Imagick;
 
@@ -32,7 +31,8 @@ class Image extends File
   protected static $attributes = array(
     'width' => array(
       'type' => 'number'
-    ), 'height' => array(
+    ),
+    'height' => array(
       'type' => 'number'
     ),
     'resolution' => array(
@@ -47,13 +47,13 @@ class Image extends File
       $image->readImageBlob($this->data);
       foreach ($image->identifyimage() as $key => $info) {
         switch ($key) {
-          case 'geometry':
-            $this->width = $info['width'];
-            $this->height = $info['height'];
-            break;
-          case 'resolution':
-            $this->resolution = array_shift($info);
-            break;
+        case 'geometry':
+          $this->width = $info['width'];
+          $this->height = $info['height'];
+          break;
+        case 'resolution':
+          $this->resolution = array_shift($info);
+          break;
         }
       }
     }

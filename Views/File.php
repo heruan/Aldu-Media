@@ -27,7 +27,11 @@ class File extends Core\View
     __CLASS__ => array(
       'form' => array(
         'fields' => array(
-          'data' => array(), 'name' => array(), 'locale' => array(), 'title' => array(), 'description' => array()
+          'data' => array(),
+          'name' => array(),
+          'locale' => array(),
+          'title' => array(),
+          'description' => array()
         )
       ),
       'table' => array(
@@ -69,7 +73,8 @@ class File extends Core\View
       $embed = null;
       if (preg_match('/^http/', $file->path)) {
         $embed = new Helper\HTML('iframe', array(
-          'src' => $file->path, 'frameborder' => '0'
+          'src' => $file->path,
+          'frameborder' => '0'
         ));
         switch ($render) {
         case 'page':
@@ -83,13 +88,16 @@ class File extends Core\View
       elseif (preg_match('/flash/', $file->type)) {
         $embed = new Helper\HTML('div');
         $object = $embed->object(array(
-          'data' => $file->url(), 'type' => $file->type
+          'data' => $file->url(),
+          'type' => $file->type
         ));
         $object->param(array(
-          'name' => 'movie', 'value' => $file->url()
+          'name' => 'movie',
+          'value' => $file->url()
         ));
         $object->param(array(
-          'name' => 'wmode', 'value' => 'transparent'
+          'name' => 'wmode',
+          'value' => 'transparent'
         ));
       }
       else {

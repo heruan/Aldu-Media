@@ -18,7 +18,6 @@
  */
 
 namespace Aldu\Media\Models;
-
 use Aldu\Core;
 use Aldu\Core\Utility\Shell;
 use Exception;
@@ -37,11 +36,14 @@ class Video extends File
   protected static $attributes = array(
     'width' => array(
       'type' => 'number'
-    ), 'height' => array(
+    ),
+    'height' => array(
       'type' => 'number'
-    ), 'duration' => array(
+    ),
+    'duration' => array(
       'type' => 'number'
-    ), 'second' => array(
+    ),
+    'second' => array(
       'type' => 'number'
     )
   );

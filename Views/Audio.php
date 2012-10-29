@@ -17,7 +17,6 @@
  * @license       Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
  */
 namespace Aldu\Media\Views;
-
 use Aldu\Core;
 use Aldu\Core\View\Helper;
 use Aldu\Core\Utility\ClassLoader;
@@ -48,16 +47,19 @@ class Audio extends File
     case 'dom':
     case 'embed':
       $embed = new Helper\HTML('audio', array(
-        'preload' => 'auto', 'controls' => 'controls'
+        'preload' => 'auto',
+        'controls' => 'controls'
       ));
       $embed->append('source', array(
-          'src' => $file->url('read'), 'type' => $file->type
-        ));
+        'src' => $file->url('read'),
+        'type' => $file->type
+      ));
       if ($file->subtitles) {
-        $embed
-          ->track(array(
-            'kind' => 'descriptions', 'label' => $file->subtitles->title, 'src' => $file->subtitles->url('read')
-          ));
+        $embed->track(array(
+          'kind' => 'descriptions',
+          'label' => $file->subtitles->title,
+          'src' => $file->subtitles->url('read')
+        ));
       }
       switch ($render) {
       case 'dom':

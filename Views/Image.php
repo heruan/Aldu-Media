@@ -36,7 +36,10 @@ class Image extends File
         )
       ),
       'thumb' => array(
-        'format' => 'png', 'width' => 80, 'height' => 80, 'crop' => 'center'
+        'format' => 'png',
+        'width' => 80,
+        'height' => 80,
+        'crop' => 'center'
       )
     )
   );
@@ -129,12 +132,13 @@ class Image extends File
     case 'embed':
       $embed = new Helper\HTML('img', array(
         'data-name' => $file->name,
-        'src' => $file
-          ->url('thumb', array(
-            'arguments' => array(
-              $width, $height, $crop
-            )
-          )),
+        'src' => $file->url('thumb', array(
+          'arguments' => array(
+            $width,
+            $height,
+            $crop
+          )
+        )),
         'alt' => $file->title,
         'title' => $file->title
       ));
@@ -165,11 +169,11 @@ class Image extends File
     foreach ($models as $model) {
       $li = $ul->li();
       $a = $li->a(array(
-          'href' => $model->url()
-        ));
+        'href' => $model->url()
+      ));
       $a->append($this->thumb($model, array(
-            'render' => 'dom'
-          )));
+        'render' => 'dom'
+      )));
       $a->h3($model->title);
       $a->append('p.ui-li-aside', $model->created->format(ALDU_DATETIME_FORMAT));
     }
@@ -187,7 +191,8 @@ class Image extends File
       $page = new Helper\HTML\Page();
       $page->title($file->title);
       $tag = new Helper\HTML('img', array(
-        'src' => $file->url('read'), 'alt' => $file->title
+        'src' => $file->url('read'),
+        'alt' => $file->title
       ));
       return $this->response->body($page->compose($tag));
     case 'dom':

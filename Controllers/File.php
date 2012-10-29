@@ -23,14 +23,16 @@ use Aldu\Core\Utility\ClassLoader;
 
 class File extends Core\Controller
 {
-  protected static $configuration = array(__CLASS__ => array(
-    'factory' => array(
-      'generic' => 'Aldu\Media\Models\File',
-      '^image/' => 'Aldu\Media\Models\File\Image',
-      '^video/' => 'Aldu\Media\Models\File\Video',
-      '/pdf$' => 'Aldu\Media\Models\File\PDF'
-     )
-  ));
+  protected static $configuration = array(
+    __CLASS__ => array(
+      'factory' => array(
+        'generic' => 'Aldu\Media\Models\File',
+        '^image/' => 'Aldu\Media\Models\File\Image',
+        '^video/' => 'Aldu\Media\Models\File\Video',
+        '/pdf$' => 'Aldu\Media\Models\File\PDF'
+      )
+    )
+  );
 
   public static function factory($type)
   {
@@ -47,7 +49,10 @@ class File extends Core\Controller
       }
     }
     elseif (method_exists($this->view, $view)) {
-      return call_user_func(array($this->view, $view), $model, array_shift($args));
+      return call_user_func(array(
+        $this->view,
+        $view
+      ), $model, array_shift($args));
     }
     return $this->response->status(404);
   }

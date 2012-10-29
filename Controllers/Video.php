@@ -22,16 +22,17 @@ use Aldu\Core;
 
 class Video extends File
 {
-  protected static $configuration = array(__CLASS__ => array(
-  ));
+  protected static $configuration = array(
+    __CLASS__ => array()
+  );
 
   public function thumb($id, $width = null, $height = null, $crop = null, $second = null)
   {
     return $this->_read(__FUNCTION__, $id, array(
-        'width' => $width,
-        'height' => $height,
-        'crop' => $crop,
-        'second' => $second
+      'width' => $width,
+      'height' => $height,
+      'crop' => $crop,
+      'second' => $second
     ));
   }
 }

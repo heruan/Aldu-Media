@@ -17,7 +17,6 @@
  * @license       Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
  */
 namespace Aldu\Media\Views;
-
 use Aldu\Core;
 use Aldu\Core\Exception;
 use Aldu\Core\View\Helper;
@@ -46,14 +45,18 @@ class PDF extends Image
     )
   );
 
-  public function thumb($file, $options = array()) {
+  public function thumb($file, $options = array())
+  {
     $options = array_merge(array(
-        'render' => $this->render,
-        'width' => static::cfg('thumb.width'),
-        'height' => static::cfg('thumb.height'),
-        'crop' => $file->crop ? : static::cfg('thumb.crop'),
-        'page' => ($file->page - 1) ? : 0
-    ), array_filter($options, function($v) { return !is_null($v); }));
+      'render' => $this->render,
+      'width' => static::cfg('thumb.width'),
+      'height' => static::cfg('thumb.height'),
+      'crop' => $file->crop ? : static::cfg('thumb.crop'),
+      'page' => ($file->page - 1) ? : 0
+    ), array_filter($options, function ($v)
+    {
+      return !is_null($v);
+    }));
     return parent::thumb($file, $options);
   }
 
@@ -66,29 +69,35 @@ class PDF extends Image
     switch ($render) {
     case 'page':
       $page = new Helper\HTML\Page();
-      $tag = new Helper\HTML('video',
-        array(
-          'preload' => 'auto', 'autoplay' => 'autoplay', 'controls' => 'controls', 'poster' => $file->url('thumb')
-        ));
+      $tag = new Helper\HTML('video', array(
+        'preload' => 'auto',
+        'autoplay' => 'autoplay',
+        'controls' => 'controls',
+        'poster' => $file->url('thumb')
+      ));
       $tag->append('source', array(
-          'src' => $file->url('read'), 'type' => $file->type
-        ));
+        'src' => $file->url('read'),
+        'type' => $file->type
+      ));
       return $this->response->body($page->compose($tag));
     case 'dom':
     case 'embed':
       if (preg_match('/^http/', $file->path)) {
         $embed = new Helper\HTML('iframe', array(
-          'src' => $file->path, 'frameborder' => '0'
+          'src' => $file->path,
+          'frameborder' => '0'
         ));
       }
       else {
-        $embed = new Helper\HTML('video',
-          array(
-            'preload' => 'auto', 'controls' => 'controls', 'poster' => $file->url('thumb')
-          ));
+        $embed = new Helper\HTML('video', array(
+          'preload' => 'auto',
+          'controls' => 'controls',
+          'poster' => $file->url('thumb')
+        ));
         $embed->append('source', array(
-            'src' => $file->url('view'), 'type' => $file->type
-          ));
+          'src' => $file->url('view'),
+          'type' => $file->type
+        ));
       }
       switch ($render) {
       case 'dom':
